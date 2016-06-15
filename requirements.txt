@@ -1,0 +1,15 @@
+Django==1.6.11
+django-ckeditor==4.5.0
+django-compressor==1.5
+django-coverage==1.2.4
+django-redis-cache==1.5.3
+django-bitfield
+django-robots==1.1
+django-dotenv
+django-getenv
+ipython>3.0
+Pillow==2.9.0
+psycopg2==2.6.1
+redis==2.10.3
+slimit==0.8.1
+uWSGI==2.0.10

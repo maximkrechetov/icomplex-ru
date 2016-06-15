@@ -1,0 +1,16 @@
+/*========== О КОМПАНИИ ==========*/
+.about-page {
+	margin-bottom: 60px;
+}
+.about-page__image {
+	margin-left: 40px;
+	position: relative;
+	top: -30px;
+}
+
+@media screen and (max-width: 480px){
+	.about-page {
+		padding: 0 10px;
+	}
+}
+/*========== О КОМПАНИИ - КОНЕЦ ==========*/

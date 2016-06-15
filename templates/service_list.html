@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="/styles/services.css">
+{% endblock %}
+
+{% block content %}
+    <main class="content services">
+        <div class="wrapper_with-paddings">
+            <h1 class="header services__header">Мы предоставляем услуги по созданию и продвижению сайтов</h1>
+            <div class="header--secondary">
+                Качественное и своевременное выполнение гарантируем
+            </div>
+            {% for obj in object_list %}
+                <section class="services__service-group services__service-group_position_first">
+                    <div class="colored-title services__title">
+                        <a href="{% url 'service' obj.url %}" class="colored-title__left services__left">{{ obj.display_name }}</a>
+                        <a href="{% url 'service' obj.url %}" class="colored-title__right">Подробная информация</a>
+                    </div>
+                    <ul class="service-list services__service-list">
+                        {% for child in obj.children %}
+                            <li class="service-list__service">
+                                <a href="{% url 'service' child.url %}" class="service-list__name link">{{ child.display_name }}</a>
+                                <span class="service-list__price">От {{ child.cost }} рублей</span>
+                                <div class="service-list__points"></div>
+                                <div class="clear"></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endfor %}
+
+            <div class="contact-list services__contact-list">
+                <h2 class="contact-list__header header--secondary">Консультация по всем вопросам</h2>
+                {% include 'contacts_include.html' %}
+            </div>
+
+            <a href="{% url 'feedback-page' %}?reason=1" class="services__contact-us bold-link">
+                Связаться прямо сейчас
+            </a>
+        </div>
+    </main>
+{% endblock %}

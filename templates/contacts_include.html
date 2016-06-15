@@ -1,0 +1,15 @@
+{% for contact in phone_contacts %}
+    <div class="contact-list__item">
+        <div class="contact-list__title">{{ contact.title }}</div>
+        <div class="contact-list__contact">Тел. {{ contact.phone }}</div>
+        <div class="contact-list__contact">{{ contact.name }}</div>
+    </div>
+{% endfor %}
+{% for contact in email_contacts %}
+    <div class="contact-list__item">
+        <div class="contact-list__title">{{ contact.title }}</div>
+        <div class="contact-list__contact">E-mail: {{ contact.email }}</div>
+        <div class="contact-list__contact">ICQ: {{ contact.icq }}</div>
+        <div class="contact-list__contact">Skype: {{ contact.skype }}</div>
+    </div>
+{% endfor %}

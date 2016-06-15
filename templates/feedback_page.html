@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title|default:"Обратная связь" }}{% endblock %}
+{% block additional_css %}
+	<link rel="stylesheet" type="text/css" href="/styles/inputs.css">
+	<link rel="stylesheet" type="text/css" href="/styles/feedback.css">
+{% endblock %}
+{% block content %}
+    <main class="content feedback">
+        <div class="wrapper_with-paddings feedback__wrapper">
+            <h1 class="header feedback__header">Напишите нам</h1>
+            <div class="feedback__form-wrapper">
+                <form class="feedback__form" enctype="multipart/form-data" method="post" action="">
+                    {% csrf_token %}
+                    <div class="feedback__name">
+                        <div class="feedback__caption">Как к Вам обращаться?</div>
+                        <div class="input-wrapper">
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="feedback__intent">
+                        <div class="feedback__caption">По какому поводу?</div>
+                        <div class="input-wrapper">
+                            {{ form.reason }}
+                        </div>
+                    </div>
+                    <div class="feedback__name">
+                        <div class="feedback__caption">Укажите Ваш E-mail</div>
+                        <div class="input-wrapper">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="feedback__intent">
+                        <div class="feedback__caption">Укажите Ваш телефон</div>
+                        <div class="input-wrapper">
+                            {{ form.phone }}
+                        </div>
+                    </div>
+                    <div class="feedback__question">
+                        <div class="feedback__caption">Конкретизируйте</div>
+                        {{ form.message }}
+                    </div>
+                    <div class="feedback__footer">
+                        <div class="feedback__attach">
+                            <div class="feedback__add-icon"></div>
+                            <span class="pseudolink feedback__add-files">Прикрепить файлы</span>
+                            <span style="display: none">
+                                {{ form.file }}
+                            </span>
+                            <span class="feedback__add-caption files_count">Выбрано файлов:<span class="files__selected_count">0</span></span>
+                        </div>
+
+                        <a href="#" class="button-box feedback__button">
+                            <input type="submit" class="button" value="Отправить">
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="feedback__call-us-wrapper">
+                <p class="feedback__call-us">Звоните нам по номеру</p>
+                <p class="feedback__phone">8-800-000-00-00</p>
+                <a href="{% url 'contacts' %}" class="feedback__more-contacts link">Больше контактов</a>
+            </div>
+            <div class="clear"></div>
+            <img class="alien-postman" src="/images/alien-postman.png">
+        </div>
+    </main>
+    {% if redirect_url and message %}
+        <script>
+            alert('{{ message }}');
+            document.location.href = '{{ redirect_url }}';
+        </script>
+    {% endif %}
+{% endblock %}
+{% block additional_js %}
+    <script type="text/javascript" src="/scripts/jquery.inputmask.js"></script>
+    <script type="text/javascript" src="/scripts/feedback_form.js"></script>
+{% endblock %}

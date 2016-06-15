@@ -1,0 +1,23 @@
+.vacancies__header {
+	margin-bottom: 27px;
+}
+.vacancies__tagline {
+	margin-bottom: 13px;
+}
+.vacancies__vacancy {
+	margin-top: 32px;
+}
+.vacancies__vacancy_position_first {
+	margin-top: 0;
+}
+.vacancies__title {
+	margin-bottom: 18px;
+}
+.vacancies__block-with-marked-list ul {
+	margin-left: 20px;
+}
+.vacancies__about-us {
+	margin-top: 28px;
+	margin-bottom: 55px;
+	display: inline-block;
+}

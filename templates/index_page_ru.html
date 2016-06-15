@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% load in_list %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/styles/ideal-image-slider.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/portfolio.css">
+{% endblock %}
+
+{% block content %}
+    <main class="content">
+        {% if 'about'|in_list:blocks %}
+            <div class="about-us wrapper_with-paddings">
+                <h1 class="about-us__header header--uppercase">Веб Студия Айкомплекс</h1>
+                <div class="about-us__body">
+                    <section class="about-us__body__item">
+                        <div class="about-us__body__item__image about-us__body__item__image--img1"></div>
+                        <p class="about-us__body__item__text"><b>Айкомплекс</b> - команда сотрудников, занятых созданием, продвижением и монетизацией Интернет-проектов.</p>
+                    </section>
+                    <section class="about-us__body__item">
+                        <div class="about-us__body__item__image about-us__body__item__image--img2"></div>
+                        <p class="about-us__body__item__text"><b>Цель компании</b> - разрабатывать интересные, удобные, отвечающие потребностям пользователей сайты узкой тематики и сервиса.</p>
+                    </section>
+                    <section class="about-us__body__item">
+                        <div class="about-us__body__item__image about-us__body__item__image--img3"></div>
+                        <p class="about-us__body__item__text"><b>Мы стремимся</b> создать продукт, который будет надежен, функционален и лидером в своей области.</p>
+                    </section>
+                    <div class="about-us__body__line--top"></div>
+                    <div class="about-us__body__line--bottom"></div>
+                </div>
+            </div>
+
+            <div class="separator">
+                <div class="separator__line">
+                    <div class="wrapper">
+                        <div class="separator__image--left"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if 'projects'|in_list:blocks %}
+            <div class="slider">
+                <div class="slider__wrapper wrapper_with-paddings">
+                    <h1 class="header header--first">Наши интернет-проекты востребованы более 7 лет</h1>
+                    <h2 class="header--secondary header--second">Сайты, созданные для людей</h2>
+                </div>
+                <div class="slider__container">
+                    <div class="slider__container__list">
+                        <div class="slider__container__list__item" id="slider">
+                            {% for slide in slides %}
+                                <a href="{{ slide.out_url }}" target="_blank">
+                                    <img data-src="{{ slide.banner_url}}" src="">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio wrapper_with-paddings">
+                <a class="portfolio__item" href="//vipgeo.ru" target="_blank">
+                    <div class="portfolio__item__image portfolio__item__image--vipgeo"></div>
+                    <p class="portfolio__item__text">Турфирмы России.Горящие туры и путевки. Социальная сеть туристов.</p>
+                </a>
+                <a class="portfolio__item" href="//32top.ru" target="_blank">
+                    <div class="portfolio__item__image portfolio__item__image--32top"></div>
+                    <p class="portfolio__item__text">Стоматологии России. Все стоматологические клиники. Адреса, телефоны, цены, отзывы.</p>
+                </a>
+                <a class="portfolio__item" href="//biokrasota.ru" target="_blank">
+                    <div class="portfolio__item__image portfolio__item__image--biokrasota"></div>
+                    <p class="portfolio__item__text">Косметологии Москвы и Санкт-Петербурга. Адреса, телефоны, цены, отзывы.</p>
+                </a>
+                <a class="portfolio__item" href="//gdeuslugi.ru" target="_blank">
+                    <div class="portfolio__item__image portfolio__item__image--gdeuslugi"></div>
+                    <p class="portfolio__item__text">Предложения и услуги от частных мастеров и исполнителей по России.</p>
+                </a>
+                <a class="portfolio__item" href="//gdekvartira.su" target="_blank">
+                    <div class="portfolio__item__image portfolio__item__image--gdekvartira"></div>
+                    <p class="portfolio__item__text">Посуточная аренда квартир, квартиры на часы. База из 124 городов России</p>
+                </a>
+            </div>
+
+
+            <div class="separator">
+                <div class="separator__line">
+                    <div class="wrapper">
+                        <div class="separator__image--right"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if 'vacancies'|in_list:blocks and vacancies|length > 2 %}
+            <div class="vacancies-block">
+                <div class="vacancies-block__wrapper wrapper_with-paddings">
+                    <h1 class="header header--first">Мы всегда ищем светлые головы и оригинальные подходы</h1>
+                    <h2 class="header--secondary header--second">Открытые вакансии в компании</h2>
+                    <div class="vacancies-block__body">
+                        {% for vacancy in vacancies %}
+                            <a class="vacancies-block__body__item link" href="{% url "vacancies-list" %}#{{ vacancy.url }}">{{ vacancy.job_title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="separator">
+                <div class="separator__line">
+                    <div class="wrapper">
+                        <div class="separator__image--left"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        {% if 'services'|in_list:blocks %}
+            <div class="services">
+                <div class="services__wrapper wrapper_with-paddings">
+                    <h1 class="header header--first">Мы предоставляем услуги по созданию и продвижению сайтов</h1>
+                    <h2 class="header--secondary header--second">Качественное и своевременное выполнение гарантируем</h2>
+                    <div class="services__body">
+                        {% for service in services %}
+                            <a class="services__body__item" href="{% url 'service' service.service_url %}">
+                                <h3 class="services__body__item__header">{{ service.title }}</h3>
+                                <div style="background-image: url({{ service.image_url }});" class="services__body__item__icon services__body__item__icon-1">
+                                    <div class="services__body__item__line"></div>
+                                </div>
+                                <p class="services__body__item__text">{{ service.description }}</p>
+                            </a>
+                        {% endfor %}
+                        <div class="services__body__item services__body__item__fake"></div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    </main>
+
+{% endblock %}
+{% block additional_js %}
+    <script type="text/javascript" src="/scripts/ideal-image-slider.min.js"></script>
+    <script type="text/javascript">
+        var slider = new IdealImageSlider.Slider({
+            selector: '#slider',
+            interval: 5000
+        });
+        slider.start();
+
+        $('.slider__container').hover(
+            function(){
+                slider.stop();
+            },
+            function(){
+                slider.start();
+            }
+        );
+
+    </script>
+{% endblock %}

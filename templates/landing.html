@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    I-Complex - разработка, создание и продвижение сайтов в Новокузнецке
+{% endblock %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="/styles/landing.css">
+    <link rel="stylesheet" type="text/css" href="/styles/ideal-image-slider.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="lp-about-us">
+        <div class="lp-about-us__body__img">
+            <video src="/video/I-Complex.mp4" autoplay muted width="100%" poster="/images/log.png">
+                <source src="/video/I-Complex.mp4" type="video/mp4">
+            </video>
+        </div>
+            <div class="lp-about-us__body__item">
+                <div class="wrapper">
+                    <div class="lp-about-us__body__item__text">Бесплатная консультация по телефону +7 (923) 465-10-08</div>
+                    <div class="lp-about-us__body__item__text">или</div>
+                    <div class="lp-about-us__table">
+                        <form enctype="multipart/form-data" method="post" action>
+                            {% csrf_token %}
+                            <div class="lp-about-us__body__item__cell">
+                                {{ form.name }}
+                            </div>
+                            <div class="lp-about-us__body__item__cell">
+                                {{ form.phone }}
+                            </div>
+                            <div class="lp-about-us__body__item__cell">
+                                <input type="submit"
+                                       class="lp-button pink-btn request-callback"
+                                       value="Заказать звонок">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    <div class="color-string">
+        <div class="color-string__bground">
+            <span class="color-string__bground__text">Мы знаем как увеличить Вашу прибыль</span>
+        </div>
+    </div>
+    <h1 class="lp-caption"></h1>
+    <div class="for-you">
+                <div class="wrapper">
+                <div class="for-you__image">
+                    <img class="for-you__image__img" src="/images/note.png">
+                </div>
+                <div class="for-you__text">
+                    <span class="for-you__text__title">SEO сегодня - это не ссылки</span>
+                    <span class="for-you__text__caption"></span>
+                    <span class="for-you__text__text">
+                       При продвижение сайта для нас основным ориентиром выступают не алгоритмы поисковых систем, а развитие ресурса, его удобство для пользователя с учетом рекомендаций поисковых систем.
+                    </span>
+                </div>
+            </div>
+    </div>
+    <div class="color-string">
+        <div class="color-string-bground__narrow"></div>
+    </div>
+    <div class="slider">
+        <h1 class="lp-caption">Наши работы</h1>
+        <div class="slider__container">
+            <div class="slider__container__list">
+                <div class="slider__container__list__item" id="slider">
+                    {% for slide in slides %}
+                        <a href="{{ slide.out_url }}" target="_blank">
+                            <img data-src="{{ slide.banner_url}}" src="" data-caption="#caption-{{ forloop.counter }}">
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for slide in slides %}
+        <div id="caption-{{ forloop.counter }}" style="display: none;">
+            <div style="background-color: #{{ slide.caption_bg_color }}; padding-left: 82px;">
+                {{ slide.caption }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <form enctype="multipart/form-data" method="post" action>
+        <div class="color-string" id="request-callback">
+            <div class="color-string__bground__big">
+                <div class="color-string__bground__big__content">
+                    {% csrf_token %}
+                    <div class="color-string__bground__big__content__cell color-string__bground__big__content__text">
+                        хочу так же
+                    </div>
+
+                    <div class="color-string__bground__big__content__cell">
+                        {{ form.name }}
+                    </div>
+                    <div class="color-string__bground__big__content__cell">
+                        {{ form.phone }}
+                    </div>
+                    <div class="color-string__bground__big__content__cell">
+                        <input type="submit"
+                               class="lp-button violet-btn request-callback"
+                               value="Заказать звонок">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <h1 class="lp-caption">Отзывы</h1>
+    <div class="reviews">
+        <div class="color-string--violet">
+            <div class="color-string--violet__bground">
+                <div class="review color-string--violet__bground__text" data-id="0">
+                    С компанией Айкомплекс мы плодотворно сотрудничаем уже 4 года. В первые же месяцы совместной работы мы увидели положительную динамику, увеличилось количество предварительных продаж с сайта, увеличилась прибыль компании. Особенно хотелось бы отметить такие моменты, как выстроенная работа с клиентами, четко работающая схема взаимодействия, оперативность и отлаженный обмен отчетными документами.
+                </div>
+                <div class="review color-string&#45;&#45;violet__bground__text" data-id="1">
+                    При выборе Исполнителя, мы всегда опираемся на отзывы и престиж. Долго и кропотливо мы выбирали компанию, которая будет нам продвигать сайт, и можем сказать с уверенностью, мы не прогадали! Кроме конструктивной и оперативной обратной связи, эта компания отличается тщательным вниканием в сферу бизнеса клиента.
+                </div>
+                <div class="review color-string&#45;&#45;violet__bground__text" data-id="2">
+                    Хотелось бы выразить благодарность команде Айкомплекса, за время нашего сотрудничества мы поставили множество задач по продвижению, ребята с ними справились в сроки и на высоком уровне. Зарекомендовали себя как надежные партнеры.
+                </div>
+            </div>
+        </div>
+        <div class="wrapper reviews-grid">
+                <div class="reviews__item" data-id="0">
+                    <div class="reviews__item-photo"></div>
+                    <div class="reviews__item__col">
+                        <div class="reviews__item__text">
+                        Анастасия Баргузян
+                        </div>
+                        <div class="reviews__item__profession">
+                        Врач-стоматолог
+                        </div>
+                        <div class="reviews__item__text">
+                        Сеть стоматологических клиник
+                        </div>
+                    </div>
+                </div>
+            <div class="reviews__item" data-id="1">
+                <div class="reviews__item-photo"></div>
+                <div class="reviews__item__col">
+                    <div class="reviews__item__text">
+                        Ринат Андреев
+                    </div>
+                    <div class="reviews__item__profession">
+                        Строитель
+                    </div>
+                    <div class="reviews__item__text">
+
+                    </div>
+                </div>
+            </div>
+            <div class="reviews__item" data-id="2">
+                <div class="reviews__item-photo"></div>
+                <div class="reviews__item__col">
+                    <div class="reviews__item__text">
+                        Виктор Д
+                    </div>
+                    <div class="reviews__item__profession">
+                        Риэлтор
+                    </div>
+                    <div class="reviews__item__text">
+                        Агентство недвижимости "Мечта"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="color-string">
+        <div class="color-string-bground__narrow"></div>
+    </div>
+    <h1 class="lp-caption">ЭТАПЫ ПРОДВИЖЕНИЯ</h1>
+    <div class="wrapper tariff">
+        <div class="tariff__item">
+            <div class="tariff__item__row tariff__item__caption">
+                Этап 1 (первый месяц)
+            </div>
+            <div class="tariff__item__row tariff__item__price">
+                <span class="tariff__item__price__text">18 000</span> руб./мес.
+            </div>
+            <div class="tariff__item__row tariff__item__row__height--85">
+                <span class="tariff__item--bold">Аудит</span>
+                <ul>
+                    <li>Технический аудит, составление технического задания по исправлению технических ошибок</li>
+                    <li>Контент-аудит — аудит текстов с точки зрения читателя</li>
+                    <li>Аудит качества внешней ссылочной массы</li>
+                </ul>
+            </div>
+            <div class="tariff__item__row">
+                <span class="tariff__item--bold">Подключение и настройка систем аналитики и мониторинга</span>
+                <ul>
+                    <li>Google Analytics</li>
+                    <li>Яндекс.Метрика</li>
+                    <li>Google Webmaster Tools</li>
+                    <li> Яндекс.Вебмастер</li>
+                </ul>
+            </div>
+            <div class="tariff__item__row">
+                <span class="tariff__item--bold">Создание семантического ядра</span>
+                <ul>
+                    <li>Сбор и анализ семантического ядра</li>
+                    <li>Распределение семантического ядра по страницам сайта</li>
+                    <li>Проектирование структуры ключевых страниц</li>
+                </ul>
+            </div>
+            <div class="tariff__item__row">
+                <span class="tariff__item--bold">Постановка целей и планирование продвижения</span>
+                <ul>
+                    <li>Определение и настройка отслеживания KPI</li>
+                    <li>   Разработка стратегии продвижения и плана работ</li>
+                </ul>
+            </div>
+             <div class="tariff__item__row">
+                    продвижение в соц.сетях
+             </div>
+            <a href="#request-callback" class="lp-button pink-btn tariff__item__btn request-callback">Заказать</a>
+        </div>
+        <div class="tariff__item">
+            <div class="tariff__item__row tariff__item__caption">
+                Этап 2 (первый месяц)
+            </div>
+            <div class="tariff__item__row tariff__item__price">
+                <span class="tariff__item__price__text">18 000</span> руб./мес.
+            </div>
+            <div class="tariff__item__row tariff__item__row__height--85">
+                Оптимизация сайта и конверсий
+            </div>
+            <div class="tariff__item__row">
+                Увеличение релевантности целевых страниц по отношению к поисковым запросам
+            </div>
+            <div class="tariff__item__row">
+                Работа с поведенческими факторами
+            </div>
+            <div class="tariff__item__row">
+                Формирование грамотной внутренней перелинковки
+            </div>
+            <div class="tariff__item__row">
+                Расширение семантического ядра и посадочных страниц
+            </div>
+            <div class="tariff__item__row">
+                Увеличение ссылочной массы сайта
+            </div>
+            <div class="tariff__item__row">
+                Написание статей (при необходимости)
+            </div>
+            <div class="tariff__item__row">
+                Анализ социальных сигналов
+            </div>
+            <div class="tariff__item__row">
+                Выявление наиболее эффективных каналов привлечения трафика
+            </div>
+            <a href="#request-callback" class="lp-button pink-btn tariff__item__btn request-callback">Заказать</a>
+        </div>
+
+
+    </div>
+    <div class="color-string">
+        <div class="color-string-bground__narrow__up"></div>
+    </div>
+    <div class="question">
+        <div class="wrapper">
+            <div class="question__img-column">
+                <img class="question__img" src="/images/sloy.png">
+            </div>
+            <div class="question__text-column">
+                <div class="question__title">Остались вопросы?</div>
+                <div class="question__text">Наши специалисты помогут разобраться во всех тонкостях.
+                    Мы очень хотим <span class="question__text--pink"> помочь Вам</span>!
+                </div>
+            </div>
+        </div>
+        <form enctype="multipart/form-data" method="post" action>
+            <div class="question__item">
+                <div class="question__item__tab">
+                    {% csrf_token %}
+                    <div class="question__item__cell">
+                        {{ form.name }}
+                    </div>
+                    <div class="question__item__cell">
+                        {{ form.phone }}
+                    </div>
+                    <div class="question__item__cell">
+                        <input type="submit" class="lp-button pink-btn request-callback" value="Заказать звонок">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    {{ redirect_url }}
+    <br> {{ message }}
+    {% if redirect_url and message %}
+        <script>
+            alert('{{ message }}');
+            document.location.href = '{{ redirect_url }}';
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block additional_content %}
+{% endblock %}
+
+{% block additional_js %}
+    <script type="text/javascript" src="/scripts/jquery.inputmask.js"></script>
+    <script type="text/javascript" src="/scripts/landing.js"></script>
+    <script type="text/javascript" src="/scripts/ideal-image-slider.min.js"></script>
+    <script type="text/javascript" src="/scripts/iis-captions.js"></script>
+    <script type="text/javascript" src="/scripts/landing_reviews.js"></script>
+    <script type="text/javascript">
+        var slider = new IdealImageSlider.Slider({
+            selector: '#slider',
+            interval: 5000
+        });
+        slider.addCaptions();
+        slider.start();
+
+        $('.slider__container').hover(
+            function(){
+                slider.stop();
+            },
+            function(){
+                slider.start();
+            }
+        );
+    </script>
+{% endblock %}

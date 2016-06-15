@@ -1,0 +1,148 @@
+.form-layout {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0 20px 0 0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: url('img/dark_bg.png');
+	background: rgba(0,0,0,0.5);
+	z-index: 10;
+	text-align: center;
+	white-space: nowrap;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.form-layout:before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+.form-block {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	white-space: normal;
+}
+.form-block__wrapper {
+	display: block;
+	padding: 16px 18px;
+	border-top: 4px solid #ebebeb;
+}
+.form-block__wrapper:first-child {
+	border: none;
+}
+.form-block__head {
+	padding: 16px 30px 16px 18px;
+}
+.form-block__head__header {
+	text-align: left;
+}
+.form-block__head__header--secondary {
+	margin: 14px 0 0;
+	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 16px;
+}
+.form-block__head__cross {
+	display: block;
+	width: 10px;
+	height: 10px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.form-block__head__cross:before {
+	content: "×";
+	display: inline;
+	font-size: 20px;
+	line-height: 12px;
+	color: #969696;
+	vertical-align: top;
+}
+.form-block__body {}
+.form-block__body__item {
+	display: block;
+	margin: 20px 0 0;
+}
+.form-block__body__item:first-child {
+	margin: 0;
+}
+.form-block__body__item__title {
+	display: block;
+	text-align: left;
+	font-size: 18px;
+	line-height: 16px;
+}
+.form-block__body__item__input {
+	display: block;
+	margin: 10px 0 0;
+}
+.form-block__body__item__error {
+	display: block;
+	margin: 6px 0 0;
+	font-size: 16px;
+	line-height: 18px;
+	color: #d60a0b;
+	text-align: left;
+}
+
+.form-block__footer {
+	padding: 12px 18px;
+	text-align: left;
+}
+.form-block__footer__text {
+	display: block;
+	text-align: left;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+@media screen and (max-width: 600px){
+	.form-block__head {
+	  	padding: 16px 40px 16px 18px;
+	}
+	.form-block__head__cross {
+		width: 30px;
+		height: 30px;
+	}
+	.form-block__head__cross:before {
+		font-size: 55px;
+  		line-height: 30px;
+	}
+}
+
+/*===== ФОРМА ЗАЯВКИ НА УСЛУГУ =====*/
+.form-request {
+	min-width: 518px;
+	background-color: #fff;
+	border: 4px solid #ebebeb;
+}
+.form-request__head {
+
+}
+.form-request__body {
+}
+.form-request__button-box {
+	text-align: right;
+}
+.form-request__button-box__button {
+	display: inline-block;
+	width: 180px;
+	vertical-align: top;
+}
+.form-request__footer {}
+
+@media screen and (max-width: 600px){
+	.form-request {
+		width: 100%;
+		min-width: inherit;
+	}
+}
+/*===== ФОРМА ЗАЯВКИ НА УСЛУГУ - КОНЕЦ =====*/

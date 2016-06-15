@@ -1,0 +1,28 @@
+
+<uwsgi>
+    <socket>/var/uwsgi/main_ic_ru.sock</socket>
+    <pythonpath>..</pythonpath>
+    <module>django.core.handlers.wsgi:WSGIHandler()</module>
+    <env>DJANGO_SETTINGS_MODULE=app.settings</env>
+    <chdir>/data/web/icomplex/</chdir>
+    <autoload/>
+    <daemonize>/var/log/uwsgi_icomplex.log</daemonize>
+    <procname-master>icomplex_uwsgi</procname-master>
+    <listen>4096</listen>
+    <max-requests>6000</max-requests>
+    <optimize>2</optimize>
+    <workers>8</workers>
+    <idle>30</idle>
+    <prio>1</prio>
+    <uid>33</uid>
+    <gid>33</gid>
+    <vacuum/>
+    <enable-threads/>
+    <single-interpreter/>
+    <master/>
+    <socket-timeout>120</socket-timeout>
+    <harakiri>30</harakiri>
+    <buffer-size>8192</buffer-size>
+</uwsgi>
+
+

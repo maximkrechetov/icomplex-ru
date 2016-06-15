@@ -1,0 +1,28 @@
+.contacts {}
+.contacts__wrapper {
+	position: relative;
+}
+.contacts__header {
+	margin-bottom: 10px;
+}
+.contacts__contact-list {
+	margin-top: 20px;
+}
+.contacts__secondary-header {
+	margin-top: 25px;
+}
+.contacts__alien-operator {
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	top: -25px;
+}
+.contacts__contact-us {
+	display: block;
+	margin-top: 39px;
+}
+@media screen and (max-width: 1024px) {
+	.contacts__alien-operator {
+		display: none;
+	}
+}

@@ -1,0 +1,35 @@
+.services__header {
+	margin-bottom: 10px;
+}
+.services__service-group {
+	margin-top: 36px;
+}
+.services__service-group_position_first {
+	margin-top: 26px;
+}
+.services__title {
+	margin-bottom: 18px;
+}
+.services__title
+.services__left {
+	text-decoration: none;
+}
+.services__left:hover {
+	text-decoration: underline;
+}
+.services__service-list {
+	margin-top: 18px;
+}
+.service-list__contuct-us {
+	margin-top: 35px;
+	margin-bottom: 23px;
+	display: inline-block;
+}
+.services__contact-list {
+	margin-top: 35px;
+}
+.services__contact-us {
+	display: inline-block;
+	margin-top: 39px;
+	margin-bottom: 45px;
+}

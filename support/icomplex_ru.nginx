@@ -1,0 +1,66 @@
+upstream uwsgi_icomplex_ru {
+    server unix://var/uwsgi/main_ic_ru.sock;
+}
+
+server {
+    listen 80;
+    server_name i-complex.ru www.i-complex.ru;
+
+    access_log /var/log/nginx_ic_ru_access.log;
+    error_log /var/log/nginx_ic_ru_error.log;
+
+	gzip             on;
+	gzip_min_length  1000;
+	gzip_comp_level  6;
+	gzip_proxied     expired no-cache no-store private auth;
+	gzip_disable "msie6";
+	gzip_types       gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript;
+
+    proxy_redirect off;
+    client_max_body_size 10m;
+    client_body_buffer_size 256k;
+    proxy_connect_timeout 90;
+    proxy_send_timeout 90;
+    proxy_read_timeout 90;
+
+    location / {
+        uwsgi_read_timeout 3600;
+        uwsgi_send_timeout 3600;
+        uwsgi_pass uwsgi_icomplex_ru;
+        include uwsgi_params;
+    }
+
+    location /static/admin {
+      alias /usr/local/lib/python2.7/dist-packages/django/contrib/admin/static/admin;
+    }
+
+    location ~ ^/(?:scripts)/(.*\.(?:js|html|swf))$ {
+        expires 30d;
+        add_header Cache-Control private;
+        alias /data/web/icomplex/scripts/$1;
+    }
+
+    location ~ ^/(?:styles)/(.*\.(?:css|html|woff))$ {
+        expires 30d;
+        add_header Cache-Control private;
+        alias /data/web/icomplex/styles/$1;
+    }
+
+    location ~ ^/(?:files)/(.*\.(?:png|jpeg|jpg|doc|txt|pdf|odt))$ {
+        expires 60d;
+        add_header Cache-Control public;
+        alias /data/web/icomplex/files/$1;
+    }
+
+    location ~ ^/(?:images)/(.*\.(?:png|jpeg|jpg|doc|txt|pdf|odt))$ {
+        expires 60d;
+        add_header Cache-Control public;
+        alias /data/web/icomplex/images/$1;
+    }
+
+    location /static/ {
+        alias /data/web/icomplex/static/;
+        expires 90d;
+    }
+
+}

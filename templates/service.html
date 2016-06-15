@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ object.page_title|default:"I-complex"  }}
+{% endblock %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="/styles/inputs.css">
+	<link rel="stylesheet" type="text/css" href="/styles/service.css">
+    <link rel="stylesheet" type="text/css" href="/styles/service-group.css">
+    <link rel="stylesheet" type="text/css" href="/styles/form.css">
+{% endblock %}
+
+{% block content %}
+    <main class="content service">
+        <div class="wrapper_with-paddings service-wrapper">
+            <h1 class="header service__header">{{ object.display_name }}</h1>
+            {{ object.description|safe }}
+            <div class="service__button-wrapper--margin wrapper_with-paddings">
+                <a href="#" class="button-box service__submit-application">
+                    <div class="button" id="open_form">
+                        Оставить заявку
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% if not object.parent and object.children.exists %}
+            <div class="wrapper_with-paddings">
+                <section class="service-group__section">
+                    <h2 class="service-group__section-header">Мы предлагаем Вам:</h2>
+                    <ul class="service-list">
+                        {% for child in object.children %}
+                            <li class="service-list__service">
+                                <a href="{% url 'service' child.url %}" class="service-list__name link">{{ child.display_name }}</a>
+                                <span class="service-list__price">От {{ child.cost }} рублей</span>
+                                <div class="service-list__points"></div>
+                                <div class="clear"></div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        {% endif %}
+
+        <div class="separator">
+            <div class="separator__line">
+                <div class="wrapper">
+                    <div class="separator__image--left"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper_with-paddings service__footer">
+            <div class="contact-list services__contact-list">
+                <h2 class="contact-list__header header--secondary">Консультация по всем вопросам</h2>
+                {% include 'contacts_include.html' %}
+            </div>
+            {% if object.parent and object.neighbours.exists %}
+                <div class="other-services">
+                    <h2 class="other-services__header header--secondary">{{ object.parent.display_name }}:</h2>
+                    <div class="other-services__body">
+                        {% for neighbour in object.neighbours %}
+                            <a href="{% url 'service' neighbour.url %}" class="link other-services__service">{{ neighbour.display_name }}</a>
+                        {% endfor %}
+                        <a href="{% url 'service_list' %}" class="other-services__all-services bold-link">Все платные услуги</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </main>
+
+{% endblock %}
+
+{% block additional_content %}
+
+    <div class="form-layout" style="display: none">
+        <div class="form-block form-request" id="service_feedback" data-url="{% url 'service_form' %}">
+            <div class="form-block__wrapper form-block__head">
+                <div class="form-block__head__header header">Заполните заявку на услугу</div>
+                <div class="form-block__head__cross" id="close_form"></div>
+            </div>
+            <div class="form-block__body form-block__wrapper">
+                <div class="form-block__body__item name">
+                    <div class="form-block__body__item__title">Как к Вам обращаться?</div>
+                    <div class="form-block__body__item__input input-wrapper">
+                        <input class="input" type="text" name="name" placeholder="Введите имя">
+                    </div>
+                    <div class="form-block__body__item__error error"></div>
+                </div>
+                <div class="form-block__body__item phone">
+                    <div class="form-block__body__item__title">Телефон (с кодом города):</div>
+                    <div class="form-block__body__item__input input-wrapper">
+                        <input class="input" type="text" name="phone" placeholder="Введите телефон">
+                    </div>
+                    <div class="form-block__body__item__error error"></div>
+                </div>
+                <div class="form-block__body__item email">
+                    <div class="form-block__body__item__title">Ваш E-mail:</div>
+                    <div class="form-block__body__item__input input-wrapper">
+                        <input class="input" type="text" name="email" placeholder="email@mail.ru">
+                    </div>
+                    <div class="form-block__body__item__error error"></div>
+                </div>
+                <input style="display: none" value="" name="service_url">
+                <div class="form-block__body__item form-request__button-box">
+                    <div class="form-request__button-box__button button-box">
+                        <div class="button" id="send_feedback">
+                            Отправить
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-block__footer form-block__wrapper">
+                Не откладывайте на завтра!<br>
+                Получите консультацию от специалиста прямо сейчас!<br>
+                Потерянное время стоит дороже!
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block additional_js %}
+    <script>var addition_page_title = "{{ object.addition_page_title|default:"I-complex"  }}";</script>
+    <script type="text/javascript" src="/scripts/csrf.min.js"></script>
+    <script type="text/javascript" src="/scripts/service_form.js"></script>
+{% endblock %}

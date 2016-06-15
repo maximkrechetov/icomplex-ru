@@ -1,0 +1,115 @@
+{% load i18n %}
+{% load menu %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {% block title %}
+                I-Complex - разработка, создание и продвижение сайтов в Новокузнецке
+            {% endblock %}
+        </title>
+        <meta charset="utf-8">
+        {% compress css %}
+            <link rel="stylesheet" type="text/css" href="/styles/normalize.css">
+            <link rel="stylesheet" type="text/css" href="/styles/i-complex.css">
+            {% block additional_css %}{% endblock %}
+        {% endcompress %}
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+        <meta name='yandex-verification' content='6fa939e70923dd25' />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" viewport="width=device-width">
+        <!--[if lt IE 9]>
+           <script>
+              document.createElement('header');
+              document.createElement('main');
+              document.createElement('nav');
+              document.createElement('section');
+              document.createElement('article');
+              document.createElement('aside');
+              document.createElement('footer');
+           </script>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter31584883 = new Ya.Metrika({id:31584883,
+                        webvisor:true,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true});
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="//mc.yandex.ru/watch/31584883" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <input class="layout-switcher" id="head__menu" type="checkbox">
+        <div class="layout">
+            <header class="head">
+                <div class="head__wrapper wrapper">
+                    <a href="{% url 'home' %}"><div class="head__logo"></div></a>
+                    <nav class="head__menu">
+                        <a class="head__menu__item {% active_url request 'landing' %}" href="{% url 'landing' %}">
+                            <span class="head__menu__item__title">Проекты</span>
+                        </a>
+                        <a class="head__menu__item {% active_url request 'vacancies-list' %}" href="{% url 'vacancies-list' %}">
+                            <span class="head__menu__item__title">Вакансии</span>
+                        </a>
+                        <a class="head__menu__item {% active_url request 'service_list' %}" href="{% url 'service_list' %}">
+                            <span class="head__menu__item__title">Услуги</span>
+                        </a>
+                        <a class="head__menu__item {% active_url request 'about' %}" href="{% url 'about' %}">
+                            <span class="head__menu__item__title">О компании</span>
+                        </a>
+                        <a class="head__menu__item {% active_url request 'contacts' %}" href="{% url 'contacts' %}">
+                            <span class="head__menu__item__title">Контакты</span>
+                        </a>
+                    </nav>
+                    <label class="head__button" for="head__menu"></label>
+                </div>
+            </header>
+
+            {% block content %}
+
+
+            {% endblock %}
+
+            <footer class="footer">
+                <div class="wrapper">
+                    <div class="footer__wrapper">
+                        <div class="footer__logo"></div>
+                        <div class="footer__menu">
+                            <a class="footer__menu__item" href="{% url 'vacancies-list' %}">Вакансии</a>
+                            <a class="footer__menu__item" href="{% url 'service_list' %}">Услуги</a>
+                            <a class="footer__menu__item" href="{% url 'about' %}">О компании</a>
+                            <a class="footer__menu__item" href="{% url 'contacts' %}">Контакты</a>
+                            <a class="footer__menu__item" href="{% url 'feedback-page' %}">Обратная связь</a>
+                        </div>
+                    </div>
+                    <p class="footer__text">© www.i-complex.ru</p>
+                </div>
+            </footer>
+        </div>
+
+        {% block additional_content %}
+
+        {% endblock %}
+
+         <script type="text/javascript" src="/scripts/jquery-2.1.4.min.js"></script>
+        {% block additional_js %}{% endblock %}
+    </body>
+</html>

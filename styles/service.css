@@ -1,0 +1,75 @@
+.service {
+	font-size: 18px;
+}
+.service__block,
+.service__header {
+	margin-bottom: 15px;
+}
+.service__title {
+	margin-bottom: 11px;
+	font-size: 18px;
+}
+.price-table {
+	width: 100%;
+}
+.price-table__element {
+	width: 33.3%;
+	text-align: left;
+	word-break: break-all;
+}
+.service__button-wrapper,
+.service__button-wrapper--margin {
+	text-align: right;
+}
+.service__button-wrapper--margin {
+	margin: 15px 0 0;
+}
+.service__submit-application {
+	width: 220px;
+	display: inline-block;
+}
+.service__footer {
+	margin-top: 17px;
+	margin-bottom: 58px;
+}
+.contacts__contact-list,
+.other-services {
+	vertical-align: top;
+}
+.service__contact-list {
+	display: inline-block;
+	margin-right: 60px;
+}
+.other-services {
+	display: inline-block;
+}
+.other-services__header {
+	margin-bottom: 15px;
+}
+.other-services__body {
+	display: inline-block;
+}
+.other-services__service,
+.other-services__all-services {
+	display: block;
+}
+.other-services__service {
+	margin-bottom: 5px;
+}
+.other-services__all-services {
+	margin-top: 30px;
+}
+@media screen and (max-width: 650px) {
+	.service-wrapper {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.service__contact-list {
+		margin-right: 0;
+	}
+}
+@media screen and (max-width: 900px) {
+	.service__footer {
+		margin-bottom: 0;
+	}
+}

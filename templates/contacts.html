@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Контакты
+{% endblock %}
+
+{% block additional_css %}
+    <link rel="stylesheet" type="text/css" href="/styles/contacts.css">
+{% endblock %}
+
+{% block content %}
+    <main class="content contacts">
+        <div class="wrapper_with-paddings contacts__wrapper">
+            <h1 class="header contacts__header">Контакты</h1>
+            <span class="header header_color_dark contacts__address">
+                ООО "Айкомплекс" г. Новокузнецк, ул. Орджоникидзе 18, офис 433.
+            </span>
+
+            {% if phone_contacts.exists %}
+                <div class="contact-list contacts__contact-list">
+                    <h2 class="contact-list__header header--secondary">Куда звонить?</h2>
+                    {% for contact in phone_contacts %}
+                        <div class="contact-list__item">
+                            <div class="contact-list__title">{{ contact.title }}</div>
+                            <div class="contact-list__contact">Тел. {{ contact.phone }}</div>
+                            <div class="contact-list__contact">{{ contact.name }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if email_contacts.exists %}
+                <div class="contact-list contacts__contact-list">
+                    <h2 class="contact-list__header header--secondary">Куда писать?</h2>
+                    {% for contact in email_contacts %}
+                        <div class="contact-list__item">
+                            <div class="contact-list__title">{{ contact.title }}</div>
+                            <div class="contact-list__contact">E-mail: {{ contact.email }}</div>
+                            <div class="contact-list__contact">ICQ: {{ contact.icq }}</div>
+                            <div class="contact-list__contact">Skype: {{ contact.skype }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <a href="{% url 'feedback-page' %}" class="contacts__contact-us bold-link">
+                Связаться прямо сейчас
+            </a>
+            <img class="contacts__alien-operator" src="/images/alien-operator.png">
+        </div>
+    </main>
+{% endblock %}

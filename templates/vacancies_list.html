@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Вакансии Веб студии Айкомплекс{% endblock %}
+{% block additional_css %}
+	<link rel="stylesheet" type="text/css" href="/styles/vacancies.css">
+    <link rel="stylesheet" type="text/css" href="/styles/services.css">
+{% endblock %}
+{% block content %}
+    <main class="content vacancies">
+        <div class="wrapper_with-paddings block-with-marked-list vacancies__block-with-marked-list">
+            <h1 class="header vacancies__header">Вакансии</h1>
+            <div class="header header_color_dark vacancies__tagline">
+                Мы всегда ищем светлые головы и оригинальные подходы!
+            </div>
+            {% for vacancy in vacancies %}
+
+                <div class="expandable-block vacancies__vacancy {% if forloop.counter == 1 %}vacancies__vacancy_position_first{% endif %}">
+                    <div class="colored-title vacancies__title">
+                        <h2 class="colored-title__left" id="{{ vacancy.url }}">{{ vacancy.job_title }}</h2>
+                        <a href="{% url 'feedback-page' %}?reason=2" class="colored-title__right">Откликнуться на вакансию</a>
+                    </div>
+                    <div class="expandable-block__body">
+                        <h3 class="expandable-block__section-title">Должностные обязанности:</h3>
+                        {{ vacancy.job_functions|safe }}
+                        <div class="conditions hidden">
+                            <h3 class="expandable-block__section-title">Условия работы:</h3>
+                            {{ vacancy.job_conditions|safe }}
+
+                            <h3 class="expandable-block__section-title">Требования:</h3>
+                            {{ vacancy.requirements|safe }}
+                        </div>
+
+                    </div>
+                    <div class="expandable-block__expand-collapse-wrapper">
+                        <span for="expandable-block__trigger1" class="expandable-block__expand pseudolink">Все детали</span>
+                        <span for="expandable-block__trigger1" class="expandable-block__collapse pseudolink hidden">Свернуть</span>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="separator">
+                <div class="separator__line">
+                    <div class="wrapper">
+                        <div class="separator__image--left"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-list services__contact-list">
+                <h2 class="contact-list__header header--secondary">Консультация по всем вопросам</h2>
+                {% include 'contacts_include.html' %}
+            </div>
+            <a href="{% url 'about' %}" class="vacancies__about-us bold-link">
+                Информация о компании
+            </a>
+        </div>
+    </main>
+{% endblock %}
+{% block additional_js %}
+    <script type="text/javascript">
+        $('.pseudolink').click(function(){
+            $(this).parents('.vacancies__vacancy:first').find('.conditions, .pseudolink').toggleClass('hidden');
+        });
+    </script>
+{% endblock %}
